@@ -1,0 +1,13 @@
+{
+    "version": "0.1",
+    "description": "Plugin for Yealink T32P and T38P in version 70.0.XX.",
+    "description_fr": "Greffon pour Yealink T32P et T38P en version 70.0.XX.",
+    "capabilities": {
+        "Yealink, T32P, 32.70.0.100": {
+            "sip.lines": 6
+        },
+        "Yealink, T38P, 38.70.0.100": {
+            "sip.lines": 6
+        }
+    }
+}

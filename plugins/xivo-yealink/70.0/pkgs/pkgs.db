@@ -1,0 +1,29 @@
+[pkg_T32P-fw]
+description: Firmware for Yealink T32P
+description_fr: Micrologiciel pour Yealink T32P
+version: 32.70.0.100
+files: T32P-fw
+install: yealink-fw
+
+[pkg_T38P-fw]
+description: Firmware for Yealink T38P
+description_fr: Micrologiciel pour Yealink T38P
+version: 38.70.0.100
+files: T38P-fw
+install: yealink-fw
+
+
+[install_yealink-fw]
+a-b: unrar $FILE1
+b-c: cp *.rom firmware/
+
+
+[file_T32P-fw]
+url: http://www.yealink.com/Upload/gujian/32700100-23385433370.rar
+size: 22595353
+sha1sum: 61569d811f9e67c375c0583d0f9b0b945b47b66f
+
+[file_T38P-fw]
+url: http://www.yealink.com/Upload/gujian/38700100-00084462613.rar
+size: 24491478
+sha1sum: 4f60819230c8eb74e4bc2420f551c0298a4e96ed
