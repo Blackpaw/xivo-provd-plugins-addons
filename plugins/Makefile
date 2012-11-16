@@ -40,7 +40,7 @@ build-stable :
 
 .PHONY : upload-stable
 upload-stable : build-stable
-	rsync -v -rt --delete $(STABLE_PATH)/ $(REMOTE_USER)@$(REMOTE_HOST):$(REMOTE_STABLE_ADDONS_PATH)
+	rsync -v -rt --delete --exclude testing $(STABLE_PATH)/ $(REMOTE_USER)@$(REMOTE_HOST):$(REMOTE_STABLE_ADDONS_PATH)
 
 
 .PHONY : clean
