@@ -29,7 +29,7 @@ upload : build
 
 .PHONY : download-stable
 download-stable :
-	rsync -v -rt --delete $(REMOTE_USER)@$(REMOTE_HOST):$(REMOTE_STABLE_PATH)/ $(STABLE_PATH)
+	rsync -v -rt --delete $(REMOTE_USER)@$(REMOTE_HOST):$(REMOTE_STABLE_ADDONS_PATH)/ $(STABLE_PATH)
 
 
 .PHONY : build-stable
