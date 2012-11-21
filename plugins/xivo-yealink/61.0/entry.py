@@ -14,14 +14,14 @@ common_globals = {}
 execfile_('common.py', common_globals)
 
 
-MODEL_VERSIONS = {u'T20P': u'9.61.0.85',
-                  u'T22P': u'7.61.0.80',
-                  u'T26P': u'6.61.0.83',
-                  u'T28P': u'2.61.0.80'}
-COMMON_FILES = [('y000000000000.cfg', u'2.61.0.80.rom'),
-                ('y000000000004.cfg', u'6.61.0.83.rom'),
-                ('y000000000005.cfg', u'7.61.0.80.rom'),
-                ('y000000000007.cfg', u'9.61.0.85.rom')]
+MODEL_VERSIONS = {u'T20P': u'9.61.0.148',
+                  u'T22P': u'7.61.0.148',
+                  u'T26P': u'6.61.0.148',
+                  u'T28P': u'2.61.0.148'}
+COMMON_FILES = [('y000000000000.cfg', u'2.61.0.148.rom'),
+                ('y000000000004.cfg', u'6.61.0.148.rom'),
+                ('y000000000005.cfg', u'7.61.0.148.rom'),
+                ('y000000000007.cfg', u'9.61.0.148.rom')]
 
 
 class YealinkPlugin(common_globals['BaseYealinkPlugin']):

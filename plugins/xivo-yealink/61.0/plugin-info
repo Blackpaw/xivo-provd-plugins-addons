@@ -1,18 +1,18 @@
 {
-    "version": "0.3",
+    "version": "0.4",
     "description": "Plugin for Yealink T20P, T22P, T26P and T28P in version 61.0.",
     "description_fr": "Greffon pour Yealink T20P, T22P, T26P et T28P en version 61.0.",
     "capabilities": {
-        "Yealink, T20P, 9.61.0.85": {
+        "Yealink, T20P, 9.61.0.148": {
             "sip.lines": 2
         },
-        "Yealink, T22P, 7.61.0.80": {
+        "Yealink, T22P, 7.61.0.148": {
             "sip.lines": 3
         },
-        "Yealink, T26P, 6.61.0.83": {
+        "Yealink, T26P, 6.61.0.148": {
             "sip.lines": 3
         },
-        "Yealink, T28P, 2.61.0.80": {
+        "Yealink, T28P, 2.61.0.148": {
             "sip.lines": 6
         }
     }

@@ -1,28 +1,28 @@
 [pkg_T20P-fw]
 description: Firmware for Yealink T20P
 description_fr: Micrologiciel pour Yealink T20P
-version: 9.61.0.85
+version: 9.61.0.148
 files: T20P-fw
 install: yealink-fw
 
 [pkg_T22P-fw]
 description: Firmware for Yealink T22P
 description_fr: Micrologiciel pour Yealink T22P
-version: 7.61.0.80
+version: 7.61.0.148
 files: T22P-fw
 install: yealink-fw
 
 [pkg_T26P-fw]
 description: Firmware for Yealink T26P
 description_fr: Micrologiciel pour Yealink T26P
-version: 6.61.0.83
+version: 6.61.0.148
 files: T26P-fw
 install: yealink-fw
 
 [pkg_T28P-fw]
 description: Firmware for Yealink T28P
 description_fr: Micrologiciel pour Yealink T28P
-version: 2.61.0.80
+version: 2.61.0.148
 files: T28P-fw
 install: yealink-fw
 
@@ -34,21 +34,21 @@ b-c: cp *.rom firmware/
 
 
 [file_T20P-fw]
-url: http://www.yealink.com/Upload/gujian/961085-00424182732.rar
-size: 6217950
-sha1sum: e3357e77eca9ce277985812723de653372614b76
+url: http://www.yealink.com/Upload/gujian/9610148-00395059299.rar
+size: 6247102
+sha1sum: 50c0dec5887ab0fba4551289d69f110a11219a0d
 
 [file_T22P-fw]
-url: http://www.yealink.com/Upload/gujian/761080-00481026678.rar
-size: 6880242
-sha1sum: 411c7ac2e94a060e1e098fe488468d18a7e2f28e
+url: http://www.yealink.com/Upload/gujian/7610148-00452195317.rar
+size: 6923735
+sha1sum: 5f8eb5adb6d9bd31d215ed6a41b8d89818144ba4
 
 [file_T26P-fw]
-url: http://www.yealink.com/Upload/gujian/661083-01142323956.rar
-size: 7048975
-sha1sum: 77f2780fb4c9ec92d3a5e979e2072fa7ecef1eda
+url: http://www.yealink.com/Upload/gujian/6610148-01115445983.rar
+size: 7091903
+sha1sum: e28bf9e217055cd286b367e9ae87b136a5dc075d
 
 [file_T28P-fw]
-url: http://www.yealink.com/Upload/gujian/261080-01193176749.rar
-size: 7167828
-sha1sum: 68c4c9f2508ca1663a99f5617255ea26e2089e51
+url: http://www.yealink.com/Upload/gujian/2610148-01171848520.rar
+size: 6844479
+sha1sum: 2afe2eeef93977dc282a653cd49d119c9b5b1ab2
