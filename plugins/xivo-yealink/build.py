@@ -18,9 +18,10 @@ def build_61_0(path):
 @target('70.0', 'xivo-yealink-70.0')
 def build_70_0(path):
     check_call(['rsync', '-rlp', '--exclude', '.*',
-                '--include', '/templates/T32.tpl',
-                '--include', '/templates/T38.tpl',
-                '--include', '/templates/base.tpl',
+                '--include', '/templates/M7/T32.tpl',
+                '--include', '/templates/M7/T38.tpl',
+                '--include', '/templates/M7/base.tpl',
+                '--include', '/templates/common/M7/base.tpl',
                 '--exclude', '/templates/*',
                 'common/', path])
     
