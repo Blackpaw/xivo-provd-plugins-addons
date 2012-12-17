@@ -1,0 +1,27 @@
+[pkg_GXP1405-fw]
+description: Firmware for Grandstream GXP1405
+description_fr: Micrologiciel pour Grandstream GXP1405
+version: 1.0.5.12
+files: GXP1405-fw
+install: grandstream-fw GXP1405
+
+[pkg_GXP1160-fw]
+description: Firmware for Grandstream GXP1160
+description_fr: Micrologiciel pour Grandstream GXP1160
+version: 1.0.5.12
+files: GXP1160-fw
+install: grandstream-fw GXP1160
+
+[install_grandstream-fw]
+a-b: unzip $FILE1
+
+
+[file_GXP1405-fw]
+url: http://www.grandstream.com/firmware/BETATEST/GXP21xx_GXP14xx/Release_GXP140x_1.0.5.12.zip
+size: 6996224
+sha1sum: d0fb6d98f336e2957731ce6c885ad661919f20f0
+
+[file_GXP1160-fw]
+url: http://www.grandstream.com/firmware/BETATEST/GXP21xx_GXP14xx/Release_GXP116x_1.0.5.12.zip
+size: 6971724
+sha1sum: 320a3b4f21ef042db23ead90618cbd0ab25a4b5b
