@@ -1,0 +1,15 @@
+[pkg_SN411X-fw]
+description: Firmware for patton SN411X
+description_fr: Micrologiciel pour patton SN411X
+version: 6.2
+files: SN411X-fw
+install: SN411X-fw
+
+[install_SN411X-fw]
+a-b: unzip $FILE1
+b-c: cp * firmware/
+
+[file_SN411X-fw]
+url: http://www.patton.com/support/upgrades/files/models/SmartNode%20411x/SN4110_H323_SIP_R6.2_2012-09-11.zip
+size: 3162230
+sha1sum: 32c40a81283a0328465617433a836cc60c5b7fc0
