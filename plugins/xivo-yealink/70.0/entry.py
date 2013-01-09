@@ -9,7 +9,7 @@ The following Yealink phones are supported:
 - T28P
 - T32G
 - T38G
-- VP530
+- VP530P
 
 """
 
@@ -23,7 +23,7 @@ MODEL_VERSIONS = {u'T20P': u'9.70.0.100',
                   u'T28P': u'2.70.0.90',
                   u'T32G': u'32.70.0.100',
                   u'T38G': u'38.70.0.100',
-                  u'VP530' : u'23.70.0.40'}
+                  u'VP530P' : u'23.70.0.40'}
 COMMON_FILES = [('y000000000000.cfg', u'2.70.0.90.rom'),
                 ('y000000000004.cfg', u'6.70.0.90.rom'),
                 ('y000000000005.cfg', u'7.70.0.90.rom'),

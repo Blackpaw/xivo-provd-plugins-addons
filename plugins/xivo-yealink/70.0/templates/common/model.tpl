@@ -3,9 +3,7 @@
 
 
 #
-firmware.url.server_type = http
-firmware.url.http_url = http://{{ ip }}:{{ http_port }}
-firmware.url.firmware_name = firmware/{{ XX_fw_filename }}
+firmware.url = http://{{ ip }}:{{ http_port }}/firmware/{{ XX_fw_filename }}
 
 
 #

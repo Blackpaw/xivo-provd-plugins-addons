@@ -42,7 +42,7 @@ logger = logging.getLogger('plugin.xivo-yealink')
 
 
 class BaseYealinkHTTPDeviceInfoExtractor(object):
-    _UA_REGEX = re.compile(r'^yealink SIP-(\w+) ([\d.]+) ([\da-f:]{17})$')
+    _UA_REGEX_LIST = [ re.compile(r'^yealink SIP-(\w+) ([\d.]+) ([\da-f:]{17})$'), re.compile (r'(VP530P) ([\d.]+) ([\da-f:]{17})$') ]
 
     def extract(self, request, request_type):
         return defer.succeed(self._do_extract(request))
@@ -57,14 +57,16 @@ class BaseYealinkHTTPDeviceInfoExtractor(object):
         # HTTP User-Agent:
         #   "yealink SIP-T28P 2.50.0.50 00:15:65:13:ae:0b"
         #   "yealink SIP-T28P 2.60.0.110 00:15:65:13:ae:0b"
-        m = self._UA_REGEX.match(ua)
-        if m:
-            raw_model, raw_version, raw_mac = m.groups()
-            try:
-                mac = norm_mac(raw_mac.decode('ascii'))
-            except ValueError, e:
-                logger.warning('Could not normalize MAC address "%s": %s', raw_mac, e)
-            else:
+        #   "VP530P 23.70.0.10 00:15:65:31:47:69"
+
+        for UA_REGEX in self._UA_REGEX_LIST:
+            m = UA_REGEX.match(ua)
+            if m:
+                raw_model, raw_version, raw_mac = m.groups()
+                try:
+                    mac = norm_mac(raw_mac.decode('ascii'))
+                except ValueError, e:
+                    logger.warning('Could not normalize MAC address "%s": %s', raw_mac, e)
                 return {u'vendor': u'Yealink',
                         u'model': raw_model.decode('ascii'),
                         u'version': raw_version.decode('ascii'),
