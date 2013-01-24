@@ -1,5 +1,5 @@
 {
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Plugin for patton SN4112, SN4114, SN4118 in version 6.2.",
     "description_fr": "Greffon pour patton SN4112, SN4114, SN4118 en version 6.2.",
     "vendor" : "Patton",
@@ -7,19 +7,19 @@
     "vendor.description" : "Patton - Let's Connect",
     "vendor.official" : 0,
     "capabilities": {
-        "Patton, SN4112', 6.2": {
+        "Patton, SN4112, 6.2": {
             "sip.lines": 2,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Patton, SN4114', 6.2": {
+        "Patton, SN4114, 6.2": {
             "sip.lines": 4,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Patton, SN4118', 6.2": {
+        "Patton, SN4118, 6.2": {
             "sip.lines": 8,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
