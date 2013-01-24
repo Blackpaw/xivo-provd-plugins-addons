@@ -37,9 +37,9 @@ logger = logging.getLogger('plugin.xivo-grandstream')
 class BaseGrandstreamHTTPDeviceInfoExtractor(object):
 
     # Grandstream Model HW GXP1405 SW 1.0.4.23 DevId 000b8240d55c
+    # Grandstream Model HW GXP2200 V2.2A SW 1.0.1.33 DevId 000b82462d97
 
-    _UA_REGEX = re.compile(r'^Grandstream Model HW (\w+) SW (\w+) DevId (\w+)')
-
+    _UA_REGEX = re.compile(r'^Grandstream Model HW (\w+) SW ([^ ]+) DevId ([^ ]+)')
 
     def extract(self, request, request_type):
         return defer.succeed(self._do_extract(request))
@@ -51,7 +51,8 @@ class BaseGrandstreamHTTPDeviceInfoExtractor(object):
         return None
 
     def _extract_from_ua(self, ua):
-        m = self._UA_REGEX.match(ua)
+        new_ua = ua.replace(' V2.2A ','') #remove special version from 2200
+        m = self._UA_REGEX.match(new_ua)
 
         if m:
             raw_model, raw_version, raw_mac= m.groups()
