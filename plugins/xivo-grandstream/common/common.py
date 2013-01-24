@@ -36,6 +36,11 @@ logger = logging.getLogger('plugin.xivo-grandstream')
 
 class BaseGrandstreamHTTPDeviceInfoExtractor(object):
 
+    # Grandstream Model HW GXP1405 SW 1.0.4.23 DevId 000b8240d55c
+
+    _UA_REGEX = re.compile(r'^Grandstream Model HW (\w+) SW (\w+) DevId (\w+)')
+
+
     def extract(self, request, request_type):
         return defer.succeed(self._do_extract(request))
 
@@ -46,17 +51,14 @@ class BaseGrandstreamHTTPDeviceInfoExtractor(object):
         return None
 
     def _extract_from_ua(self, ua):
-        # HTTP User-Agent:
-        # Grandstream Model HW GXP1405 SW 1.0.4.23 DevId 000b8240d55c
-        m = ua.split()
+        m = self._UA_REGEX.match(ua)
+
         if m:
-            raw_model = m[3]
-            raw_version = m[5]
-            raw_mac = m[7]
+            raw_model, raw_version, raw_mac= m.groups()
             try:
                 mac = norm_mac(raw_mac.decode('ascii'))
             except ValueError, e:
-                logger.warning('Could not normalize MAC address: %s', e)
+                logger.warning('Could not normalize MAC address "%s": %s', raw_mac, e)
             else:
                 return {u'vendor': u'Grandstream',
                         u'model': raw_model.decode('ascii'),

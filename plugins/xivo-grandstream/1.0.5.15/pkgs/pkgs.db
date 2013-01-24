@@ -1,0 +1,105 @@
+[pkg_GXP1100-fw]
+description: Firmware for Grandstream GXP1100
+description_fr: Micrologiciel pour Grandstream GXP1100
+version: 1.0.5.15
+files: GXP110X-fw
+install: grandstream-fw
+
+[pkg_GXP1105-fw]
+description: Firmware for Grandstream GXP1105
+description_fr: Micrologiciel pour Grandstream GXP1105
+version: 1.0.5.15
+files: GXP110X-fw
+install: grandstream-fw 
+
+[pkg_GXP1160-fw]
+description: Firmware for Grandstream GXP1160
+description_fr: Micrologiciel pour Grandstream GXP1160
+version: 1.0.5.15
+files: GXP116X-fw
+install: grandstream-fw
+
+[pkg_GXP1165-fw]
+description: Firmware for Grandstream GXP1165
+description_fr: Micrologiciel pour Grandstream GXP1165
+version: 1.0.5.15
+files: GXP116X-fw
+install: grandstream-fw 
+
+[pkg_GXP1400-fw]
+description: Firmware for Grandstream GXP1400
+description_fr: Micrologiciel pour Grandstream GXP1400
+version: 1.0.5.15
+files: GXP140X-fw
+install: grandstream-fw
+
+[pkg_GXP1405-fw]
+description: Firmware for Grandstream GXP1405
+description_fr: Micrologiciel pour Grandstream GXP1405
+version: 1.0.5.15
+files: GXP140X-fw
+install: grandstream-fw
+
+[pkg_GXP1450-fw]
+description: Firmware for Grandstream GXP1450
+description_fr: Micrologiciel pour Grandstream GXP1450
+version: 1.0.5.15
+files: GXP1450-fw
+install: grandstream-fw
+
+[pkg_GXP2100-fw]
+description: Firmware for Grandstream GXP2100
+description_fr: Micrologiciel pour Grandstream GXP2100
+version: 1.0.5.15
+files: GXP21XX-fw
+install: grandstream-fw
+
+[pkg_GXP2110-fw]
+description: Firmware for Grandstream GXP2110
+description_fr: Micrologiciel pour Grandstream GXP2110
+version: 1.0.5.15
+files: GXP21XX-fw
+install: grandstream-fw 
+
+[pkg_GXP2120-fw]
+description: Firmware for Grandstream GXP2120
+description_fr: Micrologiciel pour Grandstream GXP2120
+version: 1.0.5.15
+files: GXP21XX-fw
+install: grandstream-fw
+
+[pkg_GXP2124-fw]
+description: Firmware for Grandstream GXP2124
+description_fr: Micrologiciel pour Grandstream GXP2124
+version: 1.0.5.15
+files: GXP21XX-fw
+install: grandstream-fw 
+
+[install_grandstream-fw]
+a-b: unzip $FILE1
+
+
+[file_GXP110X-fw]
+url: http://www.grandstream.com/firmware/GXP21xx/Release_GXP110x_1.0.5.15.zip
+size: 13349392
+sha1sum: 559eb05e59c0362c0c12036f009c422a5772be1d
+
+[file_GXP116X-fw]
+url: http://www.grandstream.com/firmware/GXP21xx/Release_GXP116x_1.0.5.15.zip
+size: 13958862
+sha1sum: 406ffae049f963b4363460999aa912f970bf870f
+
+[file_GXP140X-fw]
+url: http://www.grandstream.com/firmware/GXP21xx/Release_GXP140x_1.0.5.15.zip
+size: 14008302
+sha1sum: 9dfc33bfcb46462eb3606f2ba7cba278ea3ec32b
+
+[file_GXP1450-fw]
+url: http://www.grandstream.com/firmware/GXP21xx/Release_GXP1450_1.0.5.15.zip
+size: 14008342
+sha1sum: fc35c71ceb30cd929e5f08668093f347e80ee01c
+
+[file_GXP21XX-fw]
+url: http://www.grandstream.com/firmware/GXP21xx/Release_GXP2100_1.0.5.15.zip
+size: 13995230
+sha1sum: c362dc3673f2ef694182e5b557831cec1a9949d6
