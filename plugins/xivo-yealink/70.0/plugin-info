@@ -1,5 +1,5 @@
 {
-    "version": "0.7",
+    "version": "0.8",
     "description": "Plugin for Yealink T20P, T22P, T26P, T28P, T32G, T38G and VP530P in version 70.0.",
     "description_fr": "Greffon pour Yealink T20P, T22P, T26P, T28P, T32G, T38G and VP530P en version 70.0.",
     "vendor" : "Yealink",
@@ -7,37 +7,37 @@
     "vendor.description" : "Companies choose Yealink for that enable their geographically dispersed workforces to communicate and collaborate more effectively and productively over distances. Through the service provided by Yealink, people connect and collaborate from their desktops, meeting rooms, class rooms, and mobile setting.",
     "vendor.official" : 0,
     "capabilities": {
-        "Yealink, T20P, 9.70.0.100": {
+        "Yealink, T20P, 9.70.0.130": {
             "sip.lines": 2,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Yealink, T22P, 7.70.0.90": {
+        "Yealink, T22P, 7.70.0.130": {
             "sip.lines": 3,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Yealink, T26P, 6.70.0.90": {
+        "Yealink, T26P, 6.70.0.130": {
             "sip.lines": 3,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Yealink, T28P, 2.70.0.90": {
+        "Yealink, T28P, 2.70.0.130": {
             "sip.lines": 6,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Yealink, T32G, 32.70.0.100": {
+        "Yealink, T32G, 32.70.0.105": {
             "sip.lines": 6,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Yealink, T38G, 38.70.0.100": {
+        "Yealink, T38G, 38.70.0.115": {
             "sip.lines": 6,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,

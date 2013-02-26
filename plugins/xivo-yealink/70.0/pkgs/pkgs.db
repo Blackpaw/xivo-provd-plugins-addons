@@ -1,42 +1,42 @@
 [pkg_T20P-fw]
 description: Firmware for Yealink T20P
 description_fr: Micrologiciel pour Yealink T20P
-version: 9.70.0.100
+version: 9.70.0.130
 files: T20P-fw
 install: yealink-fw
 
 [pkg_T22P-fw]
 description: Firmware for Yealink T22P
 description_fr: Micrologiciel pour Yealink T22P
-version: 7.70.0.90
+version: 7.70.0.130
 files: T22P-fw
 install: yealink-fw
 
 [pkg_T26P-fw]
 description: Firmware for Yealink T26P
 description_fr: Micrologiciel pour Yealink T26P
-version: 6.70.0.90
+version: 6.70.0.130
 files: T26P-fw
 install: yealink-fw
 
 [pkg_T28P-fw]
 description: Firmware for Yealink T28P
 description_fr: Micrologiciel pour Yealink T28P
-version: 2.70.0.90
+version: 2.70.0.130
 files: T28P-fw
 install: yealink-fw
 
 [pkg_T32G-fw]
 description: Firmware for Yealink T32G
 description_fr: Micrologiciel pour Yealink T32G
-version: 32.70.0.100
+version: 32.70.0.105
 files: T32G-fw
 install: yealink-fw
 
 [pkg_T38G-fw]
 description: Firmware for Yealink T38G
 description_fr: Micrologiciel pour Yealink T38G
-version: 38.70.0.100
+version: 38.70.0.115
 files: T38G-fw
 install: yealink-fw
 
@@ -56,34 +56,34 @@ a-b: unzip $FILE1
 b-c: cp *.rom firmware/
 
 [file_T20P-fw]
-url: http://www.yealink.com/Upload/gujian/9.70.0.100.rar
-size: 6485540
-sha1sum: 549215dadea0c1f6a72d31493a816113a1e4edbd
+url: http://www.yealink.com/Upload/firmware/T2X/9.70.0.130.rar
+size: 6496405
+sha1sum: 69a42cbd3ba211fe766a6bb73a08ef360641dc5d
 
 [file_T22P-fw]
-url: http://www.yealink.com/Upload/gujian/7.70.0.90.rar
-size: 7126189
-sha1sum: 96cde7263fc64a0dab4547ac49fdfa0b88cadbbb
+url: http://www.yealink.com/Upload/firmware/T2X/7.70.0.130.rar
+size: 7132565
+sha1sum: f67adf2478899bc777cfe3b990e6d9c1fac2b2c4
 
 [file_T26P-fw]
-url: http://www.yealink.com/Upload/gujian/6.70.0.90.rar
-size: 7141780
-sha1sum: 1bcb650cc2a3b37c53b90bd2e4035b5365b9d997
+url: http://www.yealink.com/Upload/firmware/T2X/6.70.0.130.rar
+size: 7148281
+sha1sum: 5aba085537ac5a114f0f4f18834fc52ecb986029
 
 [file_T28P-fw]
-url: http://www.yealink.com/Upload/gujian/2.70.0.90.rar
-size: 7260520
-sha1sum: dc7607ced3c64511b7d24ca3afd600596f3512c3
+url: http://www.yealink.com/Upload/firmware/T2X/2.70.0.130.rar
+size: 7266807
+sha1sum: b268b89be954b43b0076d7fe490a3e3724e560a4
 
 [file_T32G-fw]
-url: http://www.yealink.com/Upload/gujian/32700100-23385433370.rar
-size: 22595353
-sha1sum: 61569d811f9e67c375c0583d0f9b0b945b47b66f
+url: http://www.yealink.com/Upload/gujian/32.70.0.105.rar
+size: 22595931
+sha1sum: 45e8d5333dc9d2ce009d1655cf9d9775352f6bf9
 
 [file_T38G-fw]
-url: http://www.yealink.com/Upload/gujian/38700100-00084462613.rar
-size: 24491478
-sha1sum: 4f60819230c8eb74e4bc2420f551c0298a4e96ed
+url: http://www.yealink.com/Upload/gujian/T2X/38.70.0.115.rar
+size: 24498168
+sha1sum: e4ddfc693edefcd3e351d369cbca98a1a7962fb1
 
 [file_VP530-fw]
 url: http://www.yealink.com/Upload/gujian/VP530%20Firmware.zip
