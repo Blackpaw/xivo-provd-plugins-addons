@@ -42,6 +42,7 @@ logger = logging.getLogger('plugin.xivo-yealink')
 
 class BaseYealinkHTTPDeviceInfoExtractor(object):
     _UA_REGEX_LIST = [ re.compile(r'^yealink SIP-(\w+) ([\d.]+) ([\da-f:]{17})$'), re.compile (r'(VP530P) ([\d.]+) ([\da-f:]{17})$'), re.compile(r'^Yealink SIP-(\w+)  ([\d.]+) ([\da-f:]{17})$') ]
+    _PATH_REGEX_W52P = re.compile(r'^/y000000000025.cfg')
 
     def extract(self, request, request_type):
         return defer.succeed(self._do_extract(request))
@@ -50,6 +51,8 @@ class BaseYealinkHTTPDeviceInfoExtractor(object):
         ua = request.getHeader('User-Agent')
         if ua:
             return self._extract_from_ua(ua)
+        else:
+           return self._extract_from_path(request)
         return None
 
     def _extract_from_ua(self, ua):
@@ -72,6 +75,13 @@ class BaseYealinkHTTPDeviceInfoExtractor(object):
                         u'version': raw_version.decode('ascii'),
                         u'mac': mac}
         return None
+
+    def _extract_from_path(self, request):
+        match = self._PATH_REGEX_W52P.match(request.path)
+        if match:
+            dev_info = {u'vendor': u'Yealink',
+                        u'model' : u'W52P'}
+            return dev_info
 
 
 class BaseYealinkPgAssociator(BasePgAssociator):

@@ -27,7 +27,7 @@ execfile_('common.py', common_globals)
 
 
 MODEL_VERSIONS = {u'W52P': u'25.20.0.10'}
-COMMON_FILES = [('y000000000025.cfg', u'2.70.0.130.rom'),]
+COMMON_FILES = [('y000000000025.cfg', u'25.20.0.10.rom'),]
 
 
 class YealinkPlugin(common_globals['BaseYealinkPlugin']):
