@@ -20,16 +20,6 @@
 
 from subprocess import check_call
 
-@target('61.0', 'xivo-yealink-61.0')
-def build_61_0(path):
-    check_call(['rsync', '-rlp', '--exclude', '.*',
-                '--exclude', '/templates/T32.tpl',
-                '--exclude', '/templates/T38.tpl',
-                'common/', path])
-
-    check_call(['rsync', '-rlp', '--exclude', '.*',
-                '61.0/', path])
-
 @target('20.0', 'xivo-yealink-20.0')
 def build_20_0(path):
     check_call(['rsync', '-rlp', '--exclude', '.*',

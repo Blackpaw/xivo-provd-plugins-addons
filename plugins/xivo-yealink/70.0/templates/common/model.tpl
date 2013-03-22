@@ -523,3 +523,8 @@ Value = %NULL%
 type = %NULL%
 PickupValue = %NULL%
 DKtype = 0
+
+;;===========================M2============================
+
+[rom:Firmware]
+url = http://{{ ip }}:{{ http_port }}/firmware/{{ XX_fw_filename }}

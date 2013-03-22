@@ -1,5 +1,5 @@
 {
-    "version": "0.9",
+    "version": "1.1",
     "description": "Plugin for Yealink T20P, T22P, T26P, T28P, T32G, T38G and VP530P in version 70.0.",
     "description_fr": "Greffon pour Yealink T20P, T22P, T26P, T28P, T32G, T38G and VP530P en version 70.0.",
     "vendor" : "Yealink",
@@ -31,13 +31,13 @@
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Yealink, T32G, 32.70.0.105": {
+        "Yealink, T32G, 32.70.0.125": {
             "sip.lines": 6,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Yealink, T38G, 38.70.0.115": {
+        "Yealink, T38G, 38.70.0.125": {
             "sip.lines": 6,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
