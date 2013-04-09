@@ -9,7 +9,7 @@ STABLE_PATH := $(BUILDDIR)/stable
 REMOTE_HOST := provd.xivo.fr
 REMOTE_USER := root
 REMOTE_DEV_ADDONS_PATH := /var/www/provd.xivo.fr/plugins/1/addons/testing
-REMOTE_STABLE_ADDONS_PATH := /var/www/provd.xivo.fr/plugins/1/addons
+REMOTE_STABLE_ADDONS_PATH := /var/www/provd.xivo.fr/plugins/1/addons/stable
 
 
 .PHONY : build
