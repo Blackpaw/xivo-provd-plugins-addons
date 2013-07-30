@@ -195,6 +195,8 @@ class BaseTechnicolorPlugin(StandardPlugin):
         u'en': u'Enterprise directory'
     }
     _XX_PHONEBOOK_NAME_DEF = u''
+    _NB_FKEYS = 66
+    _NB_LINES = 4
 
     def __init__(self, app, plugin_dir, gen_cfg, spec_cfg):
         StandardPlugin.__init__(self, app, plugin_dir, gen_cfg, spec_cfg)
@@ -281,7 +283,7 @@ class BaseTechnicolorPlugin(StandardPlugin):
     def _add_fkeys(self, raw_config):
         funckeys = raw_config[u'funckeys']
         lines = []
-        for keynum in xrange(1, 67):
+        for keynum in xrange(1, self._NB_FKEYS + 1):
             funckey_no = unicode(keynum)
             if funckey_no in funckeys:
                 funckey_dict = funckeys[funckey_no]
@@ -326,6 +328,7 @@ class BaseTechnicolorPlugin(StandardPlugin):
         self._add_ntp_zone_num(raw_config)
         self._add_fkeys(raw_config)
         raw_config[u'XX_phonebook_name'] = self._gen_xx_phonebook_name(raw_config)
+        raw_config[u'XX_nb_lines'] = self._NB_LINES
 
         path = os.path.join(self._tftpboot_dir, filename)
         self._tpl_helper.dump(tpl, raw_config, path, self._ENCODING, errors='replace')

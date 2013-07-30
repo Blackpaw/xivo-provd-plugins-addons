@@ -15,14 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-"""Plugin for Technicolor ST2022 using the 4.69.2 SIP firmware."""
-
 common_globals = {}
 execfile_('common.py', common_globals)
 
-
 MODEL = 'ST2022'
-VERSION = '4.69.2'
+VERSION = '4.78.1'
 
 
 class TechnicolorPlugin(common_globals['BaseTechnicolorPlugin']):
@@ -30,5 +27,7 @@ class TechnicolorPlugin(common_globals['BaseTechnicolorPlugin']):
 
     _COMMON_TEMPLATES = [('common/ST2022S.inf.tpl', 'ST2022S.inf')]
     _FILENAME_PREFIX = 'ST2022S'
+    _NB_FKEYS = 5
+    _NB_LINES = 2
 
     pg_associator = common_globals['BaseTechnicolorPgAssociator'](MODEL, VERSION)

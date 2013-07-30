@@ -25,7 +25,7 @@ CallPkupFlg=sc
 {% if exten_pickup_call %}
 CallPkupSC={{exten_pickup_call}}X
 {% endif %}
-{% for line_no in range(1, 5) -%}
+{% for line_no in range(1, XX_nb_lines + 1) -%}
 {% set line_no = line_no|string -%}
 {% if line_no in sip_lines -%}
 {% set line = sip_lines[line_no] -%}
