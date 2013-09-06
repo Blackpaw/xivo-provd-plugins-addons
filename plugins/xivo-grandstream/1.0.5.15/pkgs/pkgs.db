@@ -50,28 +50,28 @@ install: grandstream-fw
 [pkg_GXP2100-fw]
 description: Firmware for Grandstream GXP2100
 description_fr: Micrologiciel pour Grandstream GXP2100
-version: 1.0.5.15
+version: 1.0.5.26
 files: GXP21XX-fw
 install: grandstream-fw
 
 [pkg_GXP2110-fw]
 description: Firmware for Grandstream GXP2110
 description_fr: Micrologiciel pour Grandstream GXP2110
-version: 1.0.5.15
+version: 1.0.5.26
 files: GXP21XX-fw
 install: grandstream-fw 
 
 [pkg_GXP2120-fw]
 description: Firmware for Grandstream GXP2120
 description_fr: Micrologiciel pour Grandstream GXP2120
-version: 1.0.5.15
+version: 1.0.5.26
 files: GXP21XX-fw
 install: grandstream-fw
 
 [pkg_GXP2124-fw]
 description: Firmware for Grandstream GXP2124
 description_fr: Micrologiciel pour Grandstream GXP2124
-version: 1.0.5.15
+version: 1.0.5.26
 files: GXP21XX-fw
 install: grandstream-fw 
 
@@ -100,6 +100,6 @@ size: 14008342
 sha1sum: fc35c71ceb30cd929e5f08668093f347e80ee01c
 
 [file_GXP21XX-fw]
-url: http://www.grandstream.com/firmware/GXP21xx/Release_GXP2100_1.0.5.15.zip
-size: 13995230
-sha1sum: c362dc3673f2ef694182e5b557831cec1a9949d6
+url: http://www.grandstream.com/firmware/GXP21xx/Release_GXP2100_1.0.5.26.zip
+size: 13595517
+sha1sum: 5bb151c595baecc74f355d2795d2e989c2c3bda4

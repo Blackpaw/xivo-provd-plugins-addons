@@ -49,25 +49,25 @@
             "tel.funckeys" : 3,
             "xivo.tested" : 0
         },
-        "Grandstream, GXP2100, 1.0.5.15": {
+        "Grandstream, GXP2100, 1.0.5.26": {
             "sip.lines": 2,
             "xivo.ha" : 0,
             "tel.funckeys" : 3,
             "xivo.tested" : 0
         },
-        "Grandstream, GXP2110, 1.0.5.15": {
+        "Grandstream, GXP2110, 1.0.5.26": {
             "sip.lines": 1,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Grandstream, GXP2120, 1.0.5.15": {
+        "Grandstream, GXP2120, 1.0.5.26": {
             "sip.lines": 1,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
             "xivo.tested" : 0
         },
-        "Grandstream, GXP2124, 1.0.5.15": {
+        "Grandstream, GXP2124, 1.0.5.26": {
             "sip.lines": 1,
             "xivo.ha" : 0,
             "tel.funckeys" : 0,
