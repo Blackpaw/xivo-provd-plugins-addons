@@ -28,7 +28,6 @@
     <P270>{{ line['display_name'] }}</P270>
     <P47>{{ line['registrar_ip'] }}</P47>
     <P2312>{{ line['backup_registrar_ip'] }}</P2312>
-    <P48>{{ line['proxy_ip'] }}</P48>
     <P35>{{ line['auth_username'] }}</P35>
     <P36>{{ line['auth_username'] }}</P36>
     <P34>{{ line['password'] }}</P34>
@@ -41,7 +40,6 @@
     {% set position = line_no|int + 2 %}
     <P{{ position }}01>1</P{{ position }}01>
     <P{{ position }}02>{{ line['registrar_ip'] }}</P{{ position }}02>
-    <P{{ position }}03>{{ line['proxy_ip'] }}</P{{ position }}03>
     <P{{ position }}04>{{ line['auth_username'] }}</P{{ position }}04>
     <P{{ position }}05>{{ line['auth_username'] }}</P{{ position }}05>
     <P{{ position }}06>{{ line['password'] }}</P{{ position }}06>
