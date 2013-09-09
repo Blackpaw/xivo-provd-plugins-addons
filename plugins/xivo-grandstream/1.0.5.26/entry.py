@@ -26,7 +26,7 @@ logger = logging.getLogger('plugin.xivo-grandstream')
 MODELS = [u'GXP1100',u'GXP1105',u'GXP1160',u'GXP1165',
           u'GXP1400',u'GXP1405',u'GXP1450',
           u'GXP2100',u'GXP2110',u'GXP2120', u'GXP2124']
-VERSION = u'1.0.5.15'
+VERSION = u'1.0.5.26'
 
 
 class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
