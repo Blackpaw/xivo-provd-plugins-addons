@@ -21,14 +21,14 @@
 from subprocess import check_call
 
 
-@target('1.0.5.15', 'xivo-grandstream-1.0.5.15')
+@target('1.0.5.26', 'xivo-grandstream-1.0.5.26')
 def build_1_0_5_12(path):
     check_call(['rsync', '-rlp', '--exclude', '.*',
                 '--include', '/templates/*',
                 'common/', path])
 
     check_call(['rsync', '-rlp', '--exclude', '.*',
-                '1.0.5.15/', path])
+                '1.0.5.26/', path])
 
 @target('1.0.1.40', 'xivo-grandstream-1.0.1.40')
 def build_1_0_5_12(path):
