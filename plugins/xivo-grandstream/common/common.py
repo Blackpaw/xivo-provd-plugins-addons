@@ -40,7 +40,8 @@ LOCALE = {
         u'fr_FR': 'fr',
         u'fr_CA': 'fr',
         u'it_IT': 'it',
-        u'nl_NL': 'nl'
+        u'nl_NL': 'nl',
+        u'en_US': 'en'
     }
 
 FUNCKEY_TYPES = {
@@ -136,6 +137,7 @@ class BaseGrandstreamPlugin(StandardPlugin):
     def configure(self, device, raw_config):
         self._check_config(raw_config)
         self._check_device(device)
+        self._check_lines_password(raw_config)
         self._add_timezone(raw_config)
         self._add_locale(raw_config)
         self._add_fkeys(raw_config)
@@ -166,6 +168,11 @@ class BaseGrandstreamPlugin(StandardPlugin):
                 return defer.fail(Exception('Incompatible sync service: %s' % sync_service))
             else:
                 return threads.deferToThread(sync_service.sip_notify, ip, 'check-sync')
+
+    def _check_lines_password(self, raw_config):
+        for line in raw_config[u'sip_lines'].itervalues():
+            if line[u'password'] == u'autoprov':
+                line[u'password'] = u''
 
     def _add_timezone(self, raw_config):
         if u'timezone' in raw_config and raw_config[u'timezone'] in TZ_NAME:

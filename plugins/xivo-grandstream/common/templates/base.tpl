@@ -20,7 +20,8 @@
     <P87>{{ vlan_priority }}</P87>
     {% endif -%}
     <P298>1</P298>
-    <P1376>1</P1376>
+    <P290>{ [*x]+ }</P290>
+    <P81>1</P81>
 {# SIP per-line settings -#}
 {% for line_no, line in sip_lines.iteritems() %}
   {% if line_no == '1' %}
