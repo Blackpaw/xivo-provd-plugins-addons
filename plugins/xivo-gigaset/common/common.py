@@ -45,7 +45,8 @@ class BaseGigasetDHCPDeviceInfoExtractor(object):
         'C470_IP': u'C470 IP',
         'S675IP':  u'S675 IP',
         'S675_IP': u'S675 IP',
-        'C590_IP': u'C590 IP'
+        'C590_IP': u'C590 IP',
+        'C610_IP': u'C610 IP'
     }
     
     def extract(self, request, request_type):
