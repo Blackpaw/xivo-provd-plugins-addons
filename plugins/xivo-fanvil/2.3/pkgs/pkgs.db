@@ -1,0 +1,14 @@
+[pkg_C62-fw]
+description: Firmware for Fanvil C62
+description_fr: Micrologiciel pour Fanvil C62
+version: 2.3
+files: C62-fw
+install: fanvil-fw
+
+[install_fanvil-fw]
+a-b: cp $FILE1 firmware/
+
+[file_C62-fw]
+url: http://www.fanvil.com/UpFiles/Article/2012/7/6/2012070649327421.z
+size: 2866385
+sha1sum: a871aa16b93ba9b4d3188255e7f9465d4a4c4a74
