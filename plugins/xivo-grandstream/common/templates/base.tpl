@@ -37,6 +37,7 @@
     <P2301>0</P2301>
     <P2302>0</P2302>
     <P2303>1</P2303>
+    <P191>0</P191>
   {% else -%}
     {% set position = line_no|int + 2 %}
     <P{{ position }}01>1</P{{ position }}01>
@@ -47,6 +48,7 @@
     <P{{ position }}07>{{ line['display_name'] }}</P{{ position }}07>
     <P{{ position }}17>{{ line['display_name'] }}</P{{ position }}17>
     <P{{ position }}26>{{ exten_voicemail }}</P{{ position }}26>
+    <P{{ position }}20>0</P{{ position }}20>
     <P2{{ position }}01>0</P2{{ position }}01>
     <P2{{ position }}02>0</P2{{ position }}02>
     <P2{{ position }}03>1</P2{{ position }}03> 
