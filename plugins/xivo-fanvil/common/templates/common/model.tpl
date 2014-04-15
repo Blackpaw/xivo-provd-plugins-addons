@@ -12,7 +12,7 @@ Download Mode      :1
 Download Interval  :1
 DHCP Option        :66
 PNP Enable         :0
-Auto_Image_URL     :http://{{ ip }}:{{ http_port }}/firmware/{{ XX_fw_filename }}
-Save_Provision_Info:1
+Auto Image URL     :http://{{ ip }}:{{ http_port }}/firmware/{{ XX_fw_filename }}
+Save Provision Info:1
 
 <<END OF FILE>>
