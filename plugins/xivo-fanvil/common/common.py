@@ -73,7 +73,7 @@ class BaseFanvilHTTPDeviceInfoExtractor(object):
         return None
 
     def _extract_from_path(self, request):
-        if request.path.startswith('/f0C00620000.cfg'):
+        if request.path.find('f0C00620000.cfg') != -1:
             return {u'vendor': u'Fanvil',
                     u'model' : u'C62'}
         return None
