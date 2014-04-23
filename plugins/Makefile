@@ -3,28 +3,28 @@ PGBUILD := ./pgbuild.py
 
 BUILDDIR := _build
 PLUGINS_PATH := $(BUILDDIR)/plugins
-DEV_PATH := $(BUILDDIR)/dev
+TESTING_PATH := $(BUILDDIR)/testing
 STABLE_PATH := $(BUILDDIR)/stable
 
 REMOTE_HOST := provd.xivo.fr
 REMOTE_USER := root
-REMOTE_DEV_ADDONS_PATH := /var/www/provd.xivo.fr/plugins/1/addons/testing
+REMOTE_TESTING_ADDONS_PATH := /var/www/provd.xivo.fr/plugins/1/addons/testing
 REMOTE_STABLE_ADDONS_PATH := /var/www/provd.xivo.fr/plugins/1/addons/stable
 
 
 .PHONY : build
 build :
-	rm -rf $(PLUGINS_PATH) $(DEV_PATH)
-	mkdir -p $(PLUGINS_PATH) $(DEV_PATH)
+	rm -rf $(PLUGINS_PATH) $(TESTING_PATH)
+	mkdir -p $(PLUGINS_PATH) $(TESTING_PATH)
 	$(PGBUILD) -B -s . -d $(PLUGINS_PATH)
-	$(PGBUILD) -P -s $(PLUGINS_PATH) -d $(DEV_PATH)
-	$(PGBUILD) -D -s $(DEV_PATH) -d $(DEV_PATH)
-	chmod +r $(DEV_PATH)/*
+	$(PGBUILD) -P -s $(PLUGINS_PATH) -d $(TESTING_PATH)
+	$(PGBUILD) -D -s $(TESTING_PATH) -d $(TESTING_PATH)
+	chmod +r $(TESTING_PATH)/*
 
 
 .PHONY : upload
 upload : build
-	rsync -v -rt --delete $(DEV_PATH)/ $(REMOTE_USER)@$(REMOTE_HOST):$(REMOTE_DEV_ADDONS_PATH)
+	rsync -v -rt --delete $(TESTING_PATH)/ $(REMOTE_USER)@$(REMOTE_HOST):$(REMOTE_TESTING_ADDONS_PATH)
 
 
 .PHONY : download-stable
