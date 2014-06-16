@@ -1,0 +1,14 @@
+[pkg_GXP2200-fw]
+description: Firmware for Grandstream GXV3240
+description_fr: Micrologiciel pour Grandstream GXV3240
+version: 1.0.1.27
+files: GXV3240-fw
+install: grandstream-fw
+
+[install_grandstream-fw]
+a-b: unzip $FILE1
+
+[file_GXV3240-fw]
+url: http://www.grandstream.com/firmware/GXV32xx/Release_GXV3240_1.0.1.27.zip
+size: 150022616
+sha1sum: a843d86e87ed73930d6f0107a69676ea52073bde

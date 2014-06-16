@@ -54,6 +54,7 @@ class BaseGrandstreamHTTPDeviceInfoExtractor(object):
 
     # Grandstream Model HW GXP1405 SW 1.0.4.23 DevId 000b8240d55c
     # Grandstream Model HW GXP2200 V2.2A SW 1.0.1.33 DevId 000b82462d97
+    # Grandstream Model HW GXV3240 V1.6B SW 1.0.1.27 DevId 000b82632815
 
     _UA_REGEX = re.compile(r'^Grandstream Model HW (\w+) SW ([^ ]+) DevId ([^ ]+)')
 
@@ -67,7 +68,7 @@ class BaseGrandstreamHTTPDeviceInfoExtractor(object):
         return None
 
     def _extract_from_ua(self, ua):
-        new_ua = ua.replace(' V2.2A ','') #remove special version from 2200
+        new_ua = re.sub("( V[0-9]\.[0-9][A-Z] )", '', ua)
         m = self._UA_REGEX.match(new_ua)
 
         if m:
