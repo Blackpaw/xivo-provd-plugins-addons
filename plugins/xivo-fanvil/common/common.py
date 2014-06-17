@@ -52,31 +52,23 @@ FUNCKEY_TYPES = {
 
 
 class BaseFanvilHTTPDeviceInfoExtractor(object):
-    _UA_REGEX = re.compile(r'^Fanvil$')
+    _PATH_REGEX = re.compile(r'(\b00a859\w{6})\.cfg$')
     
     def extract(self, request, request_type):
         return defer.succeed(self._do_extract(request))
-    
+
     def _do_extract(self, request):
-        ua = request.getHeader('User-Agent')
-        if ua:
-            return self._extract_from_ua(ua)
-        else:
-            return self._extract_from_path(request)
- 
-    def _extract_from_ua(self, ua):
-        m = self._UA_REGEX.match(ua)
-        if m:
-            raw_version = m.group(1)
-            return {u'vendor': u'Fanvil',
-                    u'version': raw_version.decode('ascii')}
-        return None
+        return self._extract_from_path(request)
 
     def _extract_from_path(self, request):
-        if request.path.find('f0C00620000.cfg') != -1:
+        m = self._PATH_REGEX.search(request.path)
+        if 'f0C00620000.cfg' in request.path:
             return {u'vendor': u'Fanvil',
                     u'model' : u'C62'}
-        return None
+        if m:
+            raw_mac = m.group(1)
+            mac = norm_mac(raw_mac.decode('ascii'))
+            return {u'mac': mac}
 
 class BaseFanvilPgAssociator(BasePgAssociator):
     def __init__(self, models, version):

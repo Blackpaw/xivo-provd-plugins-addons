@@ -25,5 +25,11 @@ SIP1 BakProxy Port :{{ line['backup_proxy_port']|d(5060) }}
 
 {% endfor %}
 
+<PHONE CONFIG MODULE>
+{% for line_no, line in sip_lines.iteritems() %}
+LCD Title          :{{ line['display_name']|e }} {{ line['number'] }}
+
+{% endfor %}
+
 <<END OF FILE>>
 
