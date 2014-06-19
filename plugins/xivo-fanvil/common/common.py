@@ -45,7 +45,7 @@ LOCALE = {
     }
 
 FUNCKEY_TYPES = {
-        u'speeddial': 0,
+        u'speeddial': (1, u'/f'),
         u'blf': 1,
         u'park': 9
     }
@@ -53,13 +53,13 @@ FUNCKEY_TYPES = {
 
 class BaseFanvilHTTPDeviceInfoExtractor(object):
     _PATH_REGEX = re.compile(r'(\b00a859\w{6})\.cfg$')
-    
+
     def extract(self, request, request_type):
         return defer.succeed(self._do_extract(request))
-
+    
     def _do_extract(self, request):
         return self._extract_from_path(request)
-
+ 
     def _extract_from_path(self, request):
         m = self._PATH_REGEX.search(request.path)
         if 'f0C00620000.cfg' in request.path:
@@ -68,7 +68,8 @@ class BaseFanvilHTTPDeviceInfoExtractor(object):
         if m:
             raw_mac = m.group(1)
             mac = norm_mac(raw_mac.decode('ascii'))
-            return {u'mac': mac}
+            return {u'mac': mac} 
+
 
 class BaseFanvilPgAssociator(BasePgAssociator):
     def __init__(self, models, version):
@@ -178,31 +179,60 @@ class BaseFanvilPlugin(StandardPlugin):
        if locale in LOCALE:
             raw_config[u'XX_locale'] = LOCALE[locale]
 
+    def _format_funckey_speeddial(self, funckey_no, funckey_dict):
+        lines = []
+        lines.append(u'<Function_Key_Entry>')
+        lines.append(u'<ID>Fkey%d</ID>' % (int(funckey_no) + 7))
+        lines.append(u'<Type>1</Type>')
+        lines.append(u'<Value>%s@%s/f</Value>' % (funckey_dict[u'value'], funckey_dict[u'line']))
+        lines.append(u'<Title></Title>')
+        lines.append(u'</Function_Key_Entry>') 
+        return lines
+
+    def _format_funckey_blf(self, funckey_no, funckey_dict, exten_pickup_call=None):
+        # Be warned that blf works only for DSS keys.
+        lines = []
+        lines.append(u'<Function_Key_Entry>')
+        lines.append(u'<ID>Fkey%d</ID>' % (int(funckey_no) + 7))
+        lines.append(u'<Type>1</Type>')
+        if exten_pickup_call:
+            lines.append(u'<Value>%s@%s/b%s</Value>' % (funckey_dict[u'value'], funckey_dict[u'line'],
+                                                        exten_pickup_call))
+        else:
+            lines.append(u'<Value>%s@%s/b</Value>' % (funckey_dict[u'value'], funckey_dict[u'line']))
+        lines.append(u'<Title></Title>')
+        lines.append(u'</Function_Key_Entry>')
+        return lines
+
+    def _format_funckey_call_park(self, funckey_no, funckey_dict):
+        lines = []
+        lines.append(u'<Function_Key_Entry>')
+        lines.append(u'<ID>Fkey%d</ID>' % (int(funckey_no) + 7))
+        lines.append(u'<Type>1</Type>')
+        lines.append(u'<Value>%s@%s/c</Value>' % (funckey_dict[u'value'], funckey_dict[u'line']))
+        lines.append(u'<Title></Title>')
+        lines.append(u'</Function_Key_Entry>')
+        return lines
+
     def _add_fkeys(self, raw_config):
         lines = []
+        exten_pickup_call = raw_config.get('exten_pickup_call')
         for funckey_no, funckey_dict in raw_config[u'funckeys'].iteritems():
-            i_funckey_no = int(funckey_no)
+            keynum = int(funckey_no)
             funckey_type = funckey_dict[u'type']
-            if funckey_type not in FUNCKEY_TYPES:
+            if funckey_type == u'speeddial':
+                lines.extend(self._format_funckey_speeddial(funckey_no, funckey_dict))
+            elif funckey_type == u'blf':
+                if keynum <= 12:
+                    lines.extend(self._format_funckey_blf(funckey_no, funckey_dict,
+                                                          exten_pickup_call))
+                else:
+                    logger.info('For Fanvil, blf is only available on DSS keys')
+                    lines.extend(self._format_funckey_speeddial(funckey_no, funckey_dict))
+            elif funckey_type == u'park':
+                lines.extend(self._format_funckey_call_park(funckey_no, funckey_dict))
+            else:
                 logger.info('Unsupported funckey type: %s', funckey_type)
                 continue
-            type_code = u'P32%s' % (i_funckey_no + 2)
-            lines.append(self._format_line(type_code, FUNCKEY_TYPES[funckey_type]))
-            line_code = self._format_code(3*i_funckey_no - 2)
-            lines.append(self._format_line(line_code, int(funckey_dict[u'line']) - 1))
-            if u'label' in funckey_dict : 
-                label_code = self._format_code(3*i_funckey_no - 1)
-                lines.append(self._format_line(label_code, funckey_dict[u'label']))
-            value_code = self._format_code(3*i_funckey_no)
-            lines.append(self._format_line(value_code, funckey_dict[u'value']))
         raw_config[u'XX_fkeys'] = u'\n'.join(lines)
 
-    def _format_line(self, code, value):
-        return u'    <%s>%s</%s>' % (code, value, code)
-
-    def _format_code(self, code):
-        if code >= 10:
-            str_code = str(code)
-        else:
-            str_code = u'0%s' % code
-        return u'P3%s' % str_code
