@@ -33,7 +33,6 @@ from twisted.internet import defer, threads
 
 logger = logging.getLogger('plugin.xivo-fanvil')
 
-TZ_NAME = { 'Europe/Paris': 'CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00' }
 LOCALE = {
         u'de_DE': 'de',
         u'es_ES': 'es',
@@ -44,12 +43,33 @@ LOCALE = {
         u'en_US': 'en'
     }
 
-FUNCKEY_TYPES = {
-        u'speeddial': (1, u'/f'),
-        u'blf': 1,
-        u'park': 9
-    }
-
+TZ_INFO = {
+        -12: [(u'UCT_-12', 0)],
+        -11: [(u'UCT_-11', 1)],
+        -10: [(u'UCT_-10', 2)],
+        -9: [(u'UCT_-09', 3)],
+        -8: [(u'UCT_-08', 4)],
+        -7: [(u'UCT_-07', 5)],
+        -6: [(u'UCT_-06', 8)],
+        -5: [(u'UCT_-05', 12)],
+        -4: [(u'UCT_-04', 15)],
+        -3: [(u'UCT_-03', 19)],
+        -2: [(u'UCT_-02', 22)],
+        -1: [(u'UCT_-01', 23)],
+        0: [(u'UCT_000', 25)],
+        1: [(u'MET_001', 27)],
+        2: [(u'EET_002', 32)],
+        3: [(u'IST_003', 38)],
+        4: [(u'UCT_004', 43)],
+        5: [(u'UCT_005', 46)],
+        6: [(u'UCT_006', 50)],
+        7: [(u'UCT_007', 54)],
+        8: [(u'CST_008', 56)],
+        9: [(u'JST_009', 61)],
+        10: [(u'UCT_010', 66)],
+        11: [(u'UCT_011', 71)],
+        12: [(u'UCT_012', 72)],
+}
 
 class BaseFanvilHTTPDeviceInfoExtractor(object):
     _PATH_REGEX = re.compile(r'(\b00a859\w{6})\.cfg$')
@@ -168,11 +188,46 @@ class BaseFanvilPlugin(StandardPlugin):
             if line[u'password'] == u'autoprov':
                 line[u'password'] = u''
 
-    def _add_timezone(self, raw_config):
-        if u'timezone' in raw_config and raw_config[u'timezone'] in TZ_NAME:
-            raw_config[u'XX_timezone'] = TZ_NAME[raw_config[u'timezone']]
+    def _format_dst_change(self, suffix, dst_change):
+        lines = []
+        lines.append(u'<DST_%s_Mon>%d</DST_%s_Mon>' % (suffix, dst_change['month'], suffix))
+        lines.append(u'<DST_%s_Hour>%d</DST_%s_Hour>' % (suffix, min(dst_change['time'].as_hours, 23), suffix))
+        if dst_change['day'].startswith('D'):
+            lines.append(u'<DST_%s_Wday>%s</DST_%s_Wday>' % (suffix, dst_change['day'][1:], suffix))
         else:
-            raw_config['timezone'] = TZ_NAME['Europe/Paris']
+            week, weekday = dst_change['day'][1:].split('.')
+            if week == '5':
+                lines.append(u'<DST_%s_Week>-1</DST_%s_Week>' % (suffix, suffix))
+            else:
+                lines.append(u'<DST_%s_Week>%s</DST_%s_Week>' % (suffix, week, suffix))
+            lines.append(u'<DST_%s_Wday>%s</DST_%s_Wday>' % (suffix, weekday, suffix))
+        lines.append(u'<DST_%s_Min>0</DST_%s_Min>' % (suffix, suffix))
+        return lines
+
+    def _format_tzinfo(self, tzinfo):
+        lines = []
+        utc = tzinfo['utcoffset'].as_hours
+        utc_list = TZ_INFO[utc]
+        for time_zone_name, time_zone in utc_list:
+            lines.append(u'<Time_Zone>%s</Time_Zone>' % (time_zone))
+            lines.append(u'<Time_Zone_Name>%s</Time_Zone_Name>' % (time_zone_name))    
+        if tzinfo['dst'] is None:
+            lines.append(u'<Enable_DST>0</Enable_DST>')
+        else:
+            lines.append(u'<Enable_DST>2</Enable_DST>')
+            lines.append(u'<DST_Min_Offset>%d</DST_Min_Offset>' % (min(tzinfo['dst']['save'].as_minutes, 60)))
+            lines.extend(self._format_dst_change('Start', tzinfo['dst']['start']))
+            lines.extend(self._format_dst_change('End', tzinfo['dst']['end']))
+        return u'\n'.join(lines)
+
+    def _add_timezone(self, raw_config):
+        if u'timezone' in raw_config:
+            try:
+                tzinfo = tzinform.get_timezone_info(raw_config[u'timezone'])
+            except tzinform.TimezoneNotFoundError, e:
+                logger.info('Unknown timezone: %s', e)
+            else:
+                raw_config[u'XX_timezone'] = self._format_tzinfo(tzinfo)
 
     def _add_locale(self, raw_config):
        locale = raw_config.get(u'locale')
@@ -196,8 +251,8 @@ class BaseFanvilPlugin(StandardPlugin):
         lines.append(u'<ID>Fkey%d</ID>' % (int(funckey_no) + 7))
         lines.append(u'<Type>1</Type>')
         if exten_pickup_call:
-            lines.append(u'<Value>%s@%s/b%s%s</Value>' % (funckey_dict[u'value'], funckey_dict[u'line'],
-                                                        exten_pickup_call, funckey_dict[u'value']))
+            lines.append(u'<Value>%s@%s/b%s</Value>' % (funckey_dict[u'value'], funckey_dict[u'line'],
+                                                        exten_pickup_call))
         else:
             lines.append(u'<Value>%s@%s/b</Value>' % (funckey_dict[u'value'], funckey_dict[u'line']))
         lines.append(u'<Title></Title>')

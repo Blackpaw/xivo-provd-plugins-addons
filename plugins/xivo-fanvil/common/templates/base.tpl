@@ -4,8 +4,7 @@
 <GLOBAL_CONFIG_MODULE>
 <SNTP_Server>{{ ntp_ip }}</SNTP_Server>
 <Enable_SNTP>1</Enable_SNTP>
-<Time_Zone>13</Time_Zone>
-<Time_Zone_Name>UCT_-05</Time_Zone_Name>
+{{ XX_timezone }}
 </GLOBAL_CONFIG_MODULE>
 <SIP_CONFIG_MODULE>
 <SIP__Port>5060</SIP__Port>
