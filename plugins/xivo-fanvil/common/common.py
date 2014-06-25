@@ -251,8 +251,8 @@ class BaseFanvilPlugin(StandardPlugin):
         lines.append(u'<ID>Fkey%d</ID>' % (int(funckey_no) + 7))
         lines.append(u'<Type>1</Type>')
         if exten_pickup_call:
-            lines.append(u'<Value>%s@%s/b%s</Value>' % (funckey_dict[u'value'], funckey_dict[u'line'],
-                                                        exten_pickup_call))
+            lines.append(u'<Value>%s@%s/b%s%s</Value>' % (funckey_dict[u'value'], funckey_dict[u'line'],
+                                                        exten_pickup_call, funckey_dict[u'value']))
         else:
             lines.append(u'<Value>%s@%s/b</Value>' % (funckey_dict[u'value'], funckey_dict[u'line']))
         lines.append(u'<Title></Title>')
