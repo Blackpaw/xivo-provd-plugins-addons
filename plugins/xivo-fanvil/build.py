@@ -24,7 +24,6 @@ from subprocess import check_call
 @target('2.3', 'xivo-fanvil-2.3')
 def build_2_3(path):
     check_call(['rsync', '-rlp', '--exclude', '.*',
-                '--include', '/templates/*',
                 'common/', path])
 
     check_call(['rsync', '-rlp', '--exclude', '.*',

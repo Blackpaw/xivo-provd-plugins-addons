@@ -15,25 +15,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-import logging
-
 common = {}
 execfile_('common.py', common)
 
-logger = logging.getLogger('plugin.xivo-fanvil')
-
-MODEL_VERSIONS = {
-    u'C62': u'2.3',
-}
+MODELS = [
+    u'C62',
+]
 COMMON_FILES = [
-    ('f0C00620000.cfg', u'2012070649327421.z', 'model.tpl')
+    ('f0C00620000.cfg', u'2012070649327421.z', 'model.tpl'),
 ]
 
 
 class FanvilPlugin(common['BaseFanvilPlugin']):
     IS_PLUGIN = True
 
-    _MODELS = MODEL_VERSIONS
     _COMMON_FILES = COMMON_FILES
 
-    pg_associator = common['BaseFanvilPgAssociator'](MODEL_VERSIONS, COMMON_FILES)
+    pg_associator = common['BaseFanvilPgAssociator'](MODELS)

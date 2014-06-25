@@ -5,8 +5,10 @@ version: 2.3
 files: C62-fw
 install: fanvil-fw
 
+
 [install_fanvil-fw]
 a-b: cp $FILE1 firmware/
+
 
 [file_C62-fw]
 url: http://www.fanvil.com/UpFiles/Article/2012/7/6/2012070649327421.z

@@ -34,41 +34,41 @@ from twisted.internet import defer, threads
 logger = logging.getLogger('plugin.xivo-fanvil')
 
 LOCALE = {
-        u'de_DE': 'de',
-        u'es_ES': 'es',
-        u'fr_FR': 'fr',
-        u'fr_CA': 'fr',
-        u'it_IT': 'it',
-        u'nl_NL': 'nl',
-        u'en_US': 'en'
-    }
+    u'de_DE': 'de',
+    u'es_ES': 'es',
+    u'fr_FR': 'fr',
+    u'fr_CA': 'fr',
+    u'it_IT': 'it',
+    u'nl_NL': 'nl',
+    u'en_US': 'en'
+}
 
 TZ_INFO = {
-        -12: [(u'UCT_-12', 0)],
-        -11: [(u'UCT_-11', 1)],
-        -10: [(u'UCT_-10', 2)],
-        -9: [(u'UCT_-09', 3)],
-        -8: [(u'UCT_-08', 4)],
-        -7: [(u'UCT_-07', 5)],
-        -6: [(u'UCT_-06', 8)],
-        -5: [(u'UCT_-05', 12)],
-        -4: [(u'UCT_-04', 15)],
-        -3: [(u'UCT_-03', 19)],
-        -2: [(u'UCT_-02', 22)],
-        -1: [(u'UCT_-01', 23)],
-        0: [(u'UCT_000', 25)],
-        1: [(u'MET_001', 27)],
-        2: [(u'EET_002', 32)],
-        3: [(u'IST_003', 38)],
-        4: [(u'UCT_004', 43)],
-        5: [(u'UCT_005', 46)],
-        6: [(u'UCT_006', 50)],
-        7: [(u'UCT_007', 54)],
-        8: [(u'CST_008', 56)],
-        9: [(u'JST_009', 61)],
-        10: [(u'UCT_010', 66)],
-        11: [(u'UCT_011', 71)],
-        12: [(u'UCT_012', 72)],
+    -12: [(u'UCT_-12', 0)],
+    -11: [(u'UCT_-11', 1)],
+    -10: [(u'UCT_-10', 2)],
+    -9: [(u'UCT_-09', 3)],
+    -8: [(u'UCT_-08', 4)],
+    -7: [(u'UCT_-07', 5)],
+    -6: [(u'UCT_-06', 8)],
+    -5: [(u'UCT_-05', 12)],
+    -4: [(u'UCT_-04', 15)],
+    -3: [(u'UCT_-03', 19)],
+    -2: [(u'UCT_-02', 22)],
+    -1: [(u'UCT_-01', 23)],
+    0: [(u'UCT_000', 25)],
+    1: [(u'MET_001', 27)],
+    2: [(u'EET_002', 32)],
+    3: [(u'IST_003', 38)],
+    4: [(u'UCT_004', 43)],
+    5: [(u'UCT_005', 46)],
+    6: [(u'UCT_006', 50)],
+    7: [(u'UCT_007', 54)],
+    8: [(u'CST_008', 56)],
+    9: [(u'JST_009', 61)],
+    10: [(u'UCT_010', 66)],
+    11: [(u'UCT_011', 71)],
+    12: [(u'UCT_012', 72)],
 }
 
 class BaseFanvilHTTPDeviceInfoExtractor(object):
@@ -81,27 +81,27 @@ class BaseFanvilHTTPDeviceInfoExtractor(object):
         return self._extract_from_path(request)
  
     def _extract_from_path(self, request):
-        m = self._PATH_REGEX.search(request.path)
         if 'f0C00620000.cfg' in request.path:
             return {u'vendor': u'Fanvil',
                     u'model' : u'C62'}
+        m = self._PATH_REGEX.search(request.path)
         if m:
             raw_mac = m.group(1)
             mac = norm_mac(raw_mac.decode('ascii'))
-            return {u'mac': mac} 
+            return {u'vendor': u'Fanvil',
+                    u'mac': mac}
+        return None
 
 
 class BaseFanvilPgAssociator(BasePgAssociator):
-    def __init__(self, models, version):
+
+    def __init__(self, models):
         BasePgAssociator.__init__(self)
         self._models = models
-        self._version = version
 
     def _do_associate(self, vendor, model, version):
         if vendor == u'Fanvil':
             if model in self._models:
-                if version == self._version:
-                    return FULL_SUPPORT
                 return COMPLETE_SUPPORT
             return UNKNOWN_SUPPORT
         return IMPROBABLE_SUPPORT
