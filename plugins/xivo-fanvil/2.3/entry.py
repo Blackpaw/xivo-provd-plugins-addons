@@ -19,10 +19,12 @@ common = {}
 execfile_('common.py', common)
 
 MODELS = [
+    u'C58',
     u'C62',
 ]
 COMMON_FILES = [
-    ('f0C00620000.cfg', u'2012070649327421.z', 'model.tpl'),
+    ('f0C00580000.cfg', u'C58_V2_3_431_247T20140605184312.z', 'model.tpl'),
+    ('f0C00620000.cfg', u'C62_V2_3_431_247T20140605184229.z', 'model.tpl'),
 ]
 
 
