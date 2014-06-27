@@ -1,5 +1,5 @@
 {
-    "version": "0.7.1",
+    "version": "0.8",
     "description": "Plugin for Grandstream GXP11XX, GXP14XX and GXP21XX in version 1.0.5.26.",
     "description_fr": "Greffon pour Grandstream GXP11XX, GXP14XX et GXP21XX en version 1.0.5.26.",
     "vendor" : "Grandstream",

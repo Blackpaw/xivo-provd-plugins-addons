@@ -358,3 +358,9 @@ class BaseAlcatelPlugin(StandardPlugin):
         else:
             password = raw_config.get(u'admin_password', self._DEFAULT_PASSWORD).encode('ascii')
             return threads.deferToThread(self._do_synchronize_via_telnet, ip, password)
+
+    def get_remote_state_trigger_filename(self, device):
+        if u'mac' not in device:
+            return None
+
+        return self._dev_specific_filename(device)
