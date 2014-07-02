@@ -163,3 +163,9 @@ class JitsiPlugin(StandardPlugin):
             os.remove(path)
         except OSError, e:
             logger.warning('error while deconfiguring device: %s', e)
+
+    def get_remote_state_trigger_filename(self, device):
+        if u'uuid' not in device:
+            return None
+
+        return self._device_config_filename(device)

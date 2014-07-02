@@ -1,5 +1,5 @@
 {
-    "version": "0.2",
+    "version": "0.3",
     "description": "Plugin for Grandstream GXP2200 in version 1.0.1.40.",
     "description_fr": "Greffon pour Grandstream GXP22XX en version 1.0.1.40.",
     "vendor" : "Grandstream",
