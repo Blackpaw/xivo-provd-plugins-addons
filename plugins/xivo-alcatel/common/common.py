@@ -159,7 +159,7 @@ class BaseAlcatelPlugin(StandardPlugin):
         
         self.services = fetchfw_helper.services()
         self.http_service = HTTPNoListingFileService(self._tftpboot_dir)
-        self.tftp_server = TFTPFileService(self._tftpboot_dir)
+        self.tftp_service = TFTPFileService(self._tftpboot_dir)
     
     http_dev_info_extractor = BaseAlcatelHTTPDeviceInfoExtractor()
     
