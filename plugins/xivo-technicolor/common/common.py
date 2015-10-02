@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2011-2014 Avencall
+# Copyright (C) 2011-2015 Avencall
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -303,16 +303,16 @@ class BaseTechnicolorPlugin(StandardPlugin):
                 lines.append(u'FeatureKeyExt%02d=L/<sip:>' % keynum)
         raw_config[u'XX_fkeys'] = u'\n'.join(lines)
 
-    if hasattr(plugins, 'add_xivo_phonebook_url'):
-        def _add_xivo_phonebook_url(self, raw_config):
+    def _add_xivo_phonebook_url(self, raw_config):
+        if hasattr(plugins, 'add_xivo_phonebook_url') and raw_config.get(u'config_version', 0) >= 1:
             plugins.add_xivo_phonebook_url(raw_config, u'technicolor', entry_point=u'lookup', qs_suffix=u'term=#SEARCH')
+        else:
+            self._add_xivo_phonebook_url_compat(raw_config)
 
-    else:
-        # backward compatibility
-        def _add_xivo_phonebook_url(self, raw_config):
-            hostname = raw_config.get(u'X_xivo_phonebook_ip')
-            if hostname:
-                raw_config[u'XX_xivo_phonebook_url'] = u'http://{hostname}/service/ipbx/web_services.php/phonebook/search/?name=#SEARCH'.format(hostname=hostname)
+    def _add_xivo_phonebook_url_compat(self, raw_config):
+        hostname = raw_config.get(u'X_xivo_phonebook_ip')
+        if hostname:
+            raw_config[u'XX_xivo_phonebook_url'] = u'http://{hostname}/service/ipbx/web_services.php/phonebook/search/?name=#SEARCH'.format(hostname=hostname)
 
     def _dev_specific_filename(self, device):
         # Return the device specific filename (not pathname) of device
