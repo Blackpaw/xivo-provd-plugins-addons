@@ -305,7 +305,7 @@ class BaseTechnicolorPlugin(StandardPlugin):
 
     def _add_xivo_phonebook_url(self, raw_config):
         if hasattr(plugins, 'add_xivo_phonebook_url') and raw_config.get(u'config_version', 0) >= 1:
-            plugins.add_xivo_phonebook_url(raw_config, u'technicolor', entry_point=u'lookup', qs_suffix=u'term=#SEARCH')
+            plugins.add_xivo_phonebook_url(raw_config, u'thomson', entry_point=u'lookup', qs_suffix=u'term=#SEARCH')
         else:
             self._add_xivo_phonebook_url_compat(raw_config)
 
