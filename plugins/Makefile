@@ -6,10 +6,10 @@ PLUGINS_PATH := $(BUILDDIR)/plugins
 TESTING_PATH := $(BUILDDIR)/testing
 STABLE_PATH := $(BUILDDIR)/stable
 
-REMOTE_HOST := provd.xivo.fr
+REMOTE_HOST := provd.xivo.io
 REMOTE_USER := root
-REMOTE_TESTING_ADDONS_PATH := /var/www/provd.xivo.fr/plugins/1/addons/testing
-REMOTE_STABLE_ADDONS_PATH := /var/www/provd.xivo.fr/plugins/1/addons/stable
+REMOTE_TESTING_ADDONS_PATH := /var/www/provd.xivo.io/plugins/1/addons/testing
+REMOTE_STABLE_ADDONS_PATH := /var/www/provd.xivo.io/plugins/1/addons/stable
 
 
 .PHONY : build
