@@ -80,11 +80,7 @@ subscribe_event=0
 config_sn={{ XX_config_sn }}
 CountryCode={{ XX_country_code }}
 dtmf_mode_flag={{ XX_dtmf_mode_flag }}
-{% if X_xivo_phonebook_ip -%}
-Phonebook1_url=https://{{ X_xivo_phonebook_ip }}/service/ipbx/web_services.php/phonebook/search/?name=#SEARCH
-{% else -%}
-Phonebook1_url=
-{% endif -%}
+Phonebook1_url={{ XX_xivo_phonebook_url }}
 Phonebook1_name={{ XX_phonebook_name }}
 
 {{ XX_fkeys }}
