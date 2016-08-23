@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2011-2014 Avencall
+# Copyright (C) 2011-2016 Avencall
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -234,8 +234,8 @@ class BaseAlcatelPlugin(StandardPlugin):
             dst_start = self._format_dst_change(tzinfo['dst']['start'])
             dst_end = self._format_dst_change(tzinfo['dst']['end'])
         else:
-            dst_start = ''
-            dst_end = ''
+            dst_start = '000000'
+            dst_end = '000000'
         return 'UT::%s:%s:%s' % (offset, dst_start, dst_end)
     
     def _add_timezone(self, raw_config):
