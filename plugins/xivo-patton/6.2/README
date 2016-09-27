@@ -1,6 +1,0 @@
-This plugin only works with a minimum firmware of 6.2.
-Lower versions will not do http gets for their config file.
-
-When xivo adds the device it will put line 1 in autoprov, so only port 0 0 can use the provisioning code.
-To add more lines you need to link them in the Xivo web interface.
-
