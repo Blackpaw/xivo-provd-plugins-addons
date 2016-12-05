@@ -30,6 +30,14 @@ def build_1_0_1_40(path):
     check_call(['rsync', '-rlp', '--exclude', '.*',
                 '1.0.1.40/', path])
 
+@target('1.0.3.27', 'xivo-grandstream-1.0.3.27')
+def build_1_0_3_27(path):
+    check_call(['rsync', '-rlp', '--exclude', '.*',
+                '--include', '/templates/*',
+                'common/', path])
+
+    check_call(['rsync', '-rlp', '--exclude', '.*',
+                '1.0.3.27/', path])
 
 @target('1.0.5.26', 'xivo-grandstream-1.0.5.26')
 def build_1_0_5_12(path):
