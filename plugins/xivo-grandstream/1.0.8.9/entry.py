@@ -23,8 +23,13 @@ execfile_('common.py', common)
 logger = logging.getLogger('plugin.xivo-grandstream')
 
 
-MODELS = [u'GXP1160',u'GXP1165',
-          u'GXP1400',u'GXP1405',u'GXP1450']
+MODELS = [
+    u'GXP1160',
+    u'GXP1165',
+    u'GXP1400',
+    u'GXP1405',
+    u'GXP1450',
+]
 VERSION = u'1.0.8.9'
 
 
