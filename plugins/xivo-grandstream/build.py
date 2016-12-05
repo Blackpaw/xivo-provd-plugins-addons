@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2013-2014 Avencall
+# Copyright 2013-2016 The Wazo Authors  (see the AUTHORS file)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,15 +21,6 @@
 from subprocess import check_call
 
 
-@target('1.0.1.40', 'xivo-grandstream-1.0.1.40')
-def build_1_0_1_40(path):
-    check_call(['rsync', '-rlp', '--exclude', '.*',
-                '--include', '/templates/*',
-                'common/', path])
-
-    check_call(['rsync', '-rlp', '--exclude', '.*',
-                '1.0.1.40/', path])
-
 @target('1.0.3.27', 'xivo-grandstream-1.0.3.27')
 def build_1_0_3_27(path):
     check_call(['rsync', '-rlp', '--exclude', '.*',
@@ -39,14 +30,6 @@ def build_1_0_3_27(path):
     check_call(['rsync', '-rlp', '--exclude', '.*',
                 '1.0.3.27/', path])
 
-@target('1.0.5.26', 'xivo-grandstream-1.0.5.26')
-def build_1_0_5_12(path):
-    check_call(['rsync', '-rlp', '--exclude', '.*',
-                '--include', '/templates/*',
-                'common/', path])
-
-    check_call(['rsync', '-rlp', '--exclude', '.*',
-                '1.0.5.26/', path])
 
 @target('1.0.8.6', 'xivo-grandstream-1.0.8.6')
 def build_1_0_8_6(path):
@@ -56,6 +39,7 @@ def build_1_0_8_6(path):
 
     check_call(['rsync', '-rlp', '--exclude', '.*',
                 '1.0.8.6/', path])
+
 
 @target('1.0.8.9', 'xivo-grandstream-1.0.8.9')
 def build_1_0_8_9(path):
