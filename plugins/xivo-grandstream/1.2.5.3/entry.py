@@ -83,3 +83,36 @@ class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
 
     pg_associator = common['BaseGrandstreamPgAssociator'](MODELS, VERSION)
 
+    def _dev_specific_filename(self, device):
+        # Return the device specific filename (not pathname) of device
+        fmted_mac = format_mac(device[u'mac'], separator='', uppercase=False)
+        return 'cfg' + fmted_mac
+
+    def configure(self, device, raw_config):
+        logger.info('Calling GXP2000 configure')
+        self._check_config(raw_config)
+        self._check_device(device)
+        self._check_lines_password(raw_config)
+        self._add_timezone(raw_config)
+        self._add_locale(raw_config)
+        self._add_fkeys(raw_config)
+        filename = self._dev_specific_filename(device)
+        tpl = self._tpl_helper.get_dev_template('GXP2000', device)
+
+        path = os.path.join(self._tftpboot_dir, filename)
+        logger.info('Destination template = %s',path)
+        self._tpl_helper.dump(tpl, raw_config, path, self._ENCODING)
+        # Convert to binary
+        #fmted_mac = format_mac(device[u'mac'], separator='', uppercase=False)
+        #encodecmd = '/home/lindsay/GS_CFG_GEN/bin/encode.sh ' + fmted_mac + ' ' + path + ' ' + path
+        #os.system(encodecmd)
+
+    def _format_line(self, code, value):
+        return u'    %s = %s' % (code, value)
+
+
+        
+
+
+
+
