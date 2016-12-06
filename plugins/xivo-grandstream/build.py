@@ -49,3 +49,12 @@ def build_1_0_8_9(path):
 
     check_call(['rsync', '-rlp', '--exclude', '.*',
                 '1.0.8.9/', path])
+
+@target('1.2.5.3', 'xivo-grandstream-1.2.5.3')
+def build_1_2_5_3(path):
+    check_call(['rsync', '-rlp', '--exclude', '.*',
+                '--include', '/templates/*',
+                'common/', path])
+
+    check_call(['rsync', '-rlp', '--exclude', '.*',
+                '1.2.5.3/', path])
