@@ -31,6 +31,9 @@ from provd.servers.http import HTTPNoListingFileService
 from provd.util import norm_mac, format_mac
 from twisted.internet import defer, threads
 from subprocess import call
+import urllib
+import binascii
+import struct
 
 common = {}
 execfile_('common.py', common)
@@ -102,8 +105,67 @@ class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
         path = os.path.join(self._tftpboot_dir, filename)
         logger.info('Destination template = %s',path)
         self._tpl_helper.dump(tpl, raw_config, path, self._ENCODING)
+        self._tpl_helper.dump(tpl, raw_config, path + '.txt', self._ENCODING)
+
         # Convert to binary
-        #fmted_mac = format_mac(device[u'mac'], separator='', uppercase=False)
+        # Read file to string
+        config = ''
+        with open(path, 'r') as f:
+            for line in f:
+                cleanedLine = line.strip()
+                if cleanedLine: # is not empty                    
+                    items = [x.strip() for x in cleanedLine.split('=')]
+                    if len(items) == 2: # Only interested in pairs (name=value)
+                        config += items[0] + '=' + urllib.quote(items[1]) + '&'
+            
+        fmted_mac = format_mac(device[u'mac'], separator='', uppercase=False)
+        short_mac = fmted_mac[2:6]
+        config = config + 'gnkey=' + short_mac
+        # Convert to ascii
+        config = str(config)
+
+        logger.info('Formatted MAC = <%s>', fmted_mac)
+        
+        # Convert mac to binary
+        b_mac = binascii.unhexlify(fmted_mac)
+        
+        # Make sure length is even bytewise
+        if len(config) % 2 != 0:
+            config += '\x00'
+
+        # Make sure length is even wordwise
+        if len(config) % 4 != 0:
+            config += "\x00\x00"
+            
+        config_length = 8 + (len(config) / 2)
+        
+        #$b_length = pack('N',$config_length);
+        b_length = struct.pack('>L', config_length)
+                
+        b_crlf = '\x0D\x0A\x0D\x0A'
+        #$b_string = $b_length . $b_mac . $b_crlf . $config;
+        b_string = b_length
+        b_string += b_mac
+        b_string += b_crlf
+        b_string += config
+        
+        # bloody check sum ...
+        csv = 0
+        for i in range(0, len(b_string), 2):
+            chunk = b_string[i:i+2]
+            x = struct.unpack( '>H', chunk)[0];
+            logger.info('Chunk = %s : %d', chunk, x)
+            csv += x
+        csv = 0x10000 - csv
+        csv &= 0xFFFF
+        b_checksum = struct.pack('>H', csv)
+        
+        b_config = b_length + b_checksum + b_mac + b_crlf + config
+        
+        # Write config file
+        with open(path, 'w') as content_file:
+            content_file.write(b_config)
+        
         #encodecmd = '/home/lindsay/GS_CFG_GEN/bin/encode.sh ' + fmted_mac + ' ' + path + ' ' + path
         #os.system(encodecmd)
 
