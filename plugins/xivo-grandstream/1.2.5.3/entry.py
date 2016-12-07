@@ -105,7 +105,6 @@ class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
         path = os.path.join(self._tftpboot_dir, filename)
         logger.info('Destination template = %s',path)
         self._tpl_helper.dump(tpl, raw_config, path, self._ENCODING)
-        self._tpl_helper.dump(tpl, raw_config, path + '.txt', self._ENCODING)
 
         # Convert to binary
         # Read file to string
