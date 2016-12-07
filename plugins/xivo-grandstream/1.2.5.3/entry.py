@@ -124,8 +124,6 @@ class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
         # Convert to ascii
         config = str(config)
 
-        logger.info('Formatted MAC = <%s>', fmted_mac)
-        
         # Convert mac to binary
         b_mac = binascii.unhexlify(fmted_mac)
         
@@ -139,22 +137,19 @@ class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
             
         config_length = 8 + (len(config) / 2)
         
-        #$b_length = pack('N',$config_length);
         b_length = struct.pack('>L', config_length)
                 
         b_crlf = '\x0D\x0A\x0D\x0A'
-        #$b_string = $b_length . $b_mac . $b_crlf . $config;
         b_string = b_length
         b_string += b_mac
         b_string += b_crlf
         b_string += config
         
-        # bloody check sum ...
+        # check sum ...
         csv = 0
         for i in range(0, len(b_string), 2):
             chunk = b_string[i:i+2]
             x = struct.unpack( '>H', chunk)[0];
-            logger.info('Chunk = %s : %d', chunk, x)
             csv += x
         csv = 0x10000 - csv
         csv &= 0xFFFF
@@ -165,9 +160,6 @@ class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
         # Write config file
         with open(path, 'w') as content_file:
             content_file.write(b_config)
-        
-        #encodecmd = '/home/lindsay/GS_CFG_GEN/bin/encode.sh ' + fmted_mac + ' ' + path + ' ' + path
-        #os.system(encodecmd)
 
     def _format_line(self, code, value):
         return u'    %s = %s' % (code, value)
