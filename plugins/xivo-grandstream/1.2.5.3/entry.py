@@ -44,45 +44,13 @@ logger = logging.getLogger('plugin.xivo-grandstream')
 MODELS = [u'GXP2000']
 VERSION = u'1.2.5.3'
 
-class BaseGrandstreamHTTPDeviceInfoExtractorGXP2000(object):
-
-    # Grandstream GXP2000 (gxp2000e.bin:1.2.5.3/boot55e.bin:1.1.6.9) DevId 000b822726c8
-
-    #_UA_REGEX = re.compile(r'^Grandstream Model HW (\w+) SW ([^ ]+) DevId ([^ ]+)')
-    _UA_REGEX = re.compile(r'^Grandstream (\w+) .*:([^ ]+)\) DevId ([^ ]+)')
-
-    def extract(self, request, request_type):
-        return defer.succeed(self._do_extract(request))
-
-    def _do_extract(self, request):
-        ua = request.getHeader('User-Agent')
-        if ua:
-            return self._extract_from_ua(ua)
-        return None
-
-    def _extract_from_ua(self, ua):
-        m = self._UA_REGEX.match(ua)
-
-        if m:
-            raw_model, raw_version, raw_mac= m.groups()
-            try:
-                mac = norm_mac(raw_mac.decode('ascii'))
-            except ValueError, e:
-                logger.warning('Could not normalize MAC address "%s": %s', raw_mac, e)
-            else:
-                return {u'vendor': u'Grandstream',
-                        u'model': raw_model.decode('ascii'),
-                        u'version': raw_version.decode('ascii'),
-                        u'mac': mac}
-        return None
-
-
 class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
     IS_PLUGIN = True
 
     _MODELS = MODELS
 
-    http_dev_info_extractor = BaseGrandstreamHTTPDeviceInfoExtractorGXP2000()
+    # http_dev_info_extractor = BaseGrandstreamHTTPDeviceInfoExtractorGXP2000()
+    http_dev_info_extractor = common['BaseGrandstreamHTTPDeviceInfoExtractorGXP2000']()
 
     pg_associator = common['BaseGrandstreamPgAssociator'](MODELS, VERSION)
 
