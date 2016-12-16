@@ -57,19 +57,16 @@ class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
         tpl = self._tpl_helper.get_dev_template('GXP2000', device)
 
         path = os.path.join(self._tftpboot_dir, filename)
-        logger.info('Destination template = %s',path)
-        self._tpl_helper.dump(tpl, raw_config, path, self._ENCODING)
+        rawdata = self._tpl_helper.render(tpl, raw_config, self._ENCODING)
 
         # Convert to binary
-        # Read file to string
         config = ''
-        with open(path, 'r') as f:
-            for line in f:
-                cleanedLine = line.strip()
-                if cleanedLine: # is not empty                    
-                    items = [x.strip() for x in cleanedLine.split('=')]
-                    if len(items) == 2: # Only interested in pairs (name=value)
-                        config += items[0] + '=' + urllib.quote(items[1]) + '&'
+        for line in rawdata.splitlines():
+            cleanedLine = line.strip()
+            if cleanedLine: # is not empty                    
+                items = [x.strip() for x in cleanedLine.split('=')]
+                if len(items) == 2: # Only interested in pairs (name=value)
+                    config += items[0] + '=' + urllib.quote(items[1]) + '&'
             
         fmted_mac = format_mac(device[u'mac'], separator='', uppercase=False)
         short_mac = fmted_mac[2:6]
@@ -116,10 +113,3 @@ class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
 
     def _format_line(self, code, value):
         return u'    %s = %s' % (code, value)
-
-
-        
-
-
-
-
