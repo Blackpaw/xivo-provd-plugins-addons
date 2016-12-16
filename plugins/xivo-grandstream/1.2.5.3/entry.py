@@ -15,22 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-import errno
 import logging
-import re
 import os.path
-from operator import itemgetter
-from provd import tzinform
-from provd import synchronize
-from provd.devices.config import RawConfigError
-from provd.plugins import StandardPlugin, FetchfwPluginHelper, \
-    TemplatePluginHelper
-from provd.devices.pgasso import IMPROBABLE_SUPPORT, COMPLETE_SUPPORT, \
-    FULL_SUPPORT, BasePgAssociator, UNKNOWN_SUPPORT
-from provd.servers.http import HTTPNoListingFileService
-from provd.util import norm_mac, format_mac
-from twisted.internet import defer, threads
-from subprocess import call
+from provd.util import format_mac
 import urllib
 import binascii
 import struct
@@ -49,7 +36,6 @@ class GrandstreamPlugin(common['BaseGrandstreamPlugin']):
 
     _MODELS = MODELS
 
-    # http_dev_info_extractor = BaseGrandstreamHTTPDeviceInfoExtractorGXP2000()
     http_dev_info_extractor = common['BaseGrandstreamHTTPDeviceInfoExtractorGXP2000']()
 
     pg_associator = common['BaseGrandstreamPgAssociator'](MODELS, VERSION)
